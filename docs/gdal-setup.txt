@@ -1,0 +1,28 @@
+##Sudo apt update
+##sudo apt install -y gdal-bin libgdal-dev
+##gdalinfo --version
+
+###Django
+## pip install GDAL
+
+###Find the GDAL library path:
+
+##gdal-config --libs
+
+###You’ll see something like:
+
+-L/usr/lib/x86_64-linux-gnu -lgdal
+
+###So the actual library is usually here:
+
+/usr/lib/x86_64-linux-gnu/libgdal.so
+
+###Now open settings.py and add:
+
+GDAL_LIBRARY_PATH = "/usr/lib/x86_64-linux-gnu/libgdal.so"
+
+##Installed_apps add
+"django.contrib.gis",
+
+###Databases use postgres and posgis
+##Create extension when in psql

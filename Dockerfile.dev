@@ -1,0 +1,22 @@
+FROM python:3.11-slim-bullseye
+
+WORKDIR /app
+
+LABEL maintainer="api.cheche@gmail.com"
+LABEL description="Development image for the Hospitals GeoDjango API"
+
+ENV PYTHONDONTWRITEBYTECODE 1
+
+ENV PYTHONUNBUFFERED 1
+# Install dependencies
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    netcat gcc postgresql \
+    binutils libproj-dev gdal-bin python3-gdal \
+    && apt-get clean
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+# Copy the rest of the application code into the container
+COPY . /app
