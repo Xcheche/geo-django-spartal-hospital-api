@@ -21,3 +21,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#TODO: Add a command to wait for the database to be ready before starting the server. This can be done using a custom management command or by using a third-party package like django-wait-for-db.
